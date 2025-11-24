@@ -3,23 +3,23 @@ import React from 'react';
 function App() {
   return (
     <div style={{ fontFamily: 'sans-serif', color: '#333', lineHeight: '1.6' }}>
-      {/* 导航栏 */}
+      {/* Navigation */}
       <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 40px', alignItems: 'center' }}>
         <h1 style={{ fontSize: '24px', fontWeight: 'bold' }}>RecallAI</h1>
         <div>
-          <a href="#features" style={{ margin: '0 15px', textDecoration: 'none', color: '#666' }}>功能</a>
-          <a href="#download" style={{ margin: '0 15px', textDecoration: 'none', color: '#007AFF', fontWeight: 'bold' }}>下载</a>
+          <a href="#features" style={{ margin: '0 15px', textDecoration: 'none', color: '#666' }}>Features</a>
+          <a href="#download" style={{ margin: '0 15px', textDecoration: 'none', color: '#007AFF', fontWeight: 'bold' }}>Download</a>
         </div>
       </nav>
 
-      {/* Hero 区域 */}
+      {/* Hero Section */}
       <header style={{ textAlign: 'center', padding: '80px 20px', background: '#f5f5f7' }}>
-        <h1 style={{ fontSize: '48px', marginBottom: '20px' }}>你的隐形面试外挂</h1>
+        <h1 style={{ fontSize: '48px', marginBottom: '20px' }}>Your Invisible Interview Assistant</h1>
         <p style={{ fontSize: '20px', color: '#666', maxWidth: '600px', margin: '0 auto 40px' }}>
-          实时语音转写 + AI 智能提词 + 幽灵隐形窗口。<br/>让面试官以为你在即兴发挥，其实你在照着念。
+          Real-time voice transcription + AI smart prompts + Invisible overlay window.<br/>Make interviewers think you're improvising, when you're actually reading.
         </p>
         <a 
-          href="https://github.com/你的GitHub用户名/RecallAI/releases"
+          href="https://github.com/676662805-cmd/RecallAI/releases"
           target="_blank"
           style={{ 
             padding: '15px 40px', 
@@ -31,33 +31,33 @@ function App() {
             boxShadow: '0 4px 12px rgba(0,122,255,0.3)'
           }}
         >
-          免费下载 Windows 版
+          Free Download for Windows
         </a>
-        <p style={{ marginTop: '15px', fontSize: '14px', color: '#888' }}>v0.9 Beta • 需自备 Groq Key</p>
+        <p style={{ marginTop: '15px', fontSize: '14px', color: '#888' }}>v0.9 Beta • Groq Key Required</p>
       </header>
 
-      {/* 功能介绍 */}
+      {/* Features Section */}
       <section id="features" style={{ padding: '60px 20px', maxWidth: '1000px', margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
           <div>
-            <h3>👻 幽灵窗口</h3>
-            <p>全透明悬浮窗，鼠标穿透。你可以直接操作 Zoom/Teams，完全不影响面试流程。</p>
+            <h3>👻 Ghost Window</h3>
+            <p>Fully transparent floating window with mouse-through. Operate Zoom/Teams directly without disrupting the interview flow.</p>
           </div>
           <div>
-            <h3>⚡️ 极速转写</h3>
-            <p>集成 Groq Turbo 引擎，0.2秒实时出字。甚至比面试官说话还快。</p>
+            <h3>⚡️ Lightning-Fast Transcription</h3>
+            <p>Powered by Groq Turbo engine, 0.2s real-time output. Even faster than the interviewer speaks.</p>
           </div>
           <div>
-            <h3>🧠 AI 智能兜底</h3>
-            <p>哪怕没准备到的问题，AI 也能根据上下文实时生成高情商回答。</p>
+            <h3>🧠 AI Smart Backup</h3>
+            <p>Even for unprepared questions, AI generates contextual high-EQ answers in real time.</p>
           </div>
         </div>
       </section>
 
-      {/* 页脚 */}
+      {/* Footer */}
       <footer style={{ textAlign: 'center', padding: '40px', borderTop: '1px solid #eee', marginTop: '40px' }}>
         <p>&copy; 2024 RecallAI. All rights reserved.</p>
-        <p style={{ fontSize: '12px', color: '#999' }}>仅供学习交流使用，请遵守当地法律法规。</p>
+        <p style={{ fontSize: '12px', color: '#999' }}>For educational purposes only. Please comply with local laws and regulations.</p>
       </footer>
     </div>
   );
