@@ -21,10 +21,16 @@ const SUPABASE_KEY = process.env.SUPABASE_KEY;
 
 let supabase;
 if (SUPABASE_URL && SUPABASE_KEY) {
-  supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-  console.log('Initialized Supabase client');
+  try {
+    supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+    console.log('Initialized Supabase client with URL:', SUPABASE_URL);
+  } catch (err) {
+    console.error('Failed to initialize Supabase client:', err);
+  }
 } else {
   console.warn('SUPABASE_URL or SUPABASE_KEY not found. Data will not be persisted!');
+  console.warn('SUPABASE_URL present:', !!SUPABASE_URL);
+  console.warn('SUPABASE_KEY present:', !!SUPABASE_KEY);
 }
 
 app.use(cors());
@@ -142,7 +148,8 @@ app.post('/api/verify-code', async (req, res) => {
     // Fallback for local testing without Supabase (not recommended for prod)
     // isValid = verificationCodes[email] === code; 
     console.warn("Supabase not connected. Cannot verify code.");
-    return res.status(500).json({ error: 'Database connection error' });
+    console.warn("Debug Info - URL:", !!process.env.SUPABASE_URL, "Key:", !!process.env.SUPABASE_KEY);
+    return res.status(500).json({ error: 'Database connection error. Please check server logs.' });
   }
 
   if (isValid) {
