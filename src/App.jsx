@@ -63,16 +63,16 @@ function WaitlistForm() {
     return (
       <div style={{ padding: '40px', background: 'var(--bg-color)', borderRadius: '20px', boxShadow: '0 4px 20px var(--shadow-color)', maxWidth: '500px', margin: '0 auto' }}>
         <h3 style={{ fontSize: '24px', color: 'var(--link-color)', marginBottom: '10px' }}>🎉 You're on the list!</h3>
-        <p style={{ color: 'var(--text-secondary)' }}>Thanks for joining. We've sent a confirmation email with your 20% off coupon code.</p>
+        <p style={{ color: 'var(--text-secondary)' }}>Thanks for joining. We've sent a confirmation email with your 50% off coupon code.</p>
       </div>
     );
   }
 
   return (
     <div style={{ padding: '40px', background: 'var(--bg-color)', borderRadius: '20px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', maxWidth: '500px', margin: '0 auto' }}>
-      <h3 style={{ fontSize: '24px', marginBottom: '10px' }}>Join the Waitlist</h3>
+      <h3 style={{ fontSize: '24px', marginBottom: '10px' }}>提前预约</h3>
       <p style={{ color: 'var(--text-secondary)', marginBottom: '30px' }}>
-        Get notified when we launch and receive an exclusive <span style={{ color: 'var(--link-color)', fontWeight: 'bold' }}>20% discount</span>.
+        Get notified when we launch and receive an exclusive <span style={{ color: 'var(--link-color)', fontWeight: 'bold' }}>50% discount</span> and a chance to get <span style={{ color: 'var(--link-color)', fontWeight: 'bold' }}>lifetime free access</span>.
       </p>
       
       <form onSubmit={step === 'email' ? handleSendCode : handleVerify}>
@@ -154,20 +154,6 @@ function App() {
         <h1 style={{ fontSize: '24px', fontWeight: 'bold' }}>RecallAI</h1>
         <div>
           <a href="#features" style={{ margin: '0 15px', textDecoration: 'none', color: 'var(--text-secondary)' }}>Features</a>
-          <button 
-            onClick={() => setShowWaitlist(true)}
-            style={{ 
-              margin: '0 15px', 
-              background: 'none', 
-              border: 'none', 
-              cursor: 'pointer', 
-              fontSize: '16px', 
-              fontFamily: 'inherit',
-              color: 'var(--text-secondary)' 
-            }}
-          >
-            Waitlist
-          </button>
         </div>
       </nav>
 
@@ -177,6 +163,32 @@ function App() {
         <p style={{ fontSize: '20px', color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 40px' }}>
           Real-time voice transcription + AI smart prompts + Invisible overlay window.<br/>Make interviewers think you're improvising, when you're actually reading.
         </p>
+        
+        <div style={{ marginBottom: '40px' }}>
+          <button 
+            onClick={() => setShowWaitlist(true)}
+            style={{ 
+              padding: '15px 40px', 
+              background: 'var(--link-color)', 
+              color: 'white', 
+              border: 'none', 
+              borderRadius: '30px', 
+              fontSize: '18px', 
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              boxShadow: '0 4px 15px var(--shadow-color)',
+              transition: 'transform 0.2s'
+            }}
+            onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+            onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+          >
+            提前预约
+          </button>
+          <p style={{ marginTop: '10px', fontSize: '14px', color: 'var(--text-tertiary)' }}>
+            50% OFF + Chance for Lifetime Free Access
+          </p>
+        </div>
+
         <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', maxWidth: '900px', margin: '0 auto' }}>
           <a 
             href="https://github.com/676662805-cmd/RecallAI/releases"
