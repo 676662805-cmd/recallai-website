@@ -61,7 +61,7 @@ function WaitlistForm() {
 
   if (step === 'success') {
     return (
-      <div style={{ padding: '40px', background: 'var(--bg-color)', borderRadius: '20px', boxShadow: '0 4px 20px var(--shadow-color)', maxWidth: '500px', margin: '0 auto' }}>
+      <div style={{ padding: '40px', background: '#000', border: '1px solid #333', borderRadius: '20px', boxShadow: '0 4px 20px var(--shadow-color)', maxWidth: '500px', margin: '0 auto' }}>
         <h3 style={{ fontSize: '24px', color: 'var(--link-color)', marginBottom: '10px' }}>🎉 You're on the list!</h3>
         <p style={{ color: 'var(--text-secondary)' }}>Thanks for joining. We've sent a confirmation email with your 50% off coupon code.</p>
       </div>
@@ -69,7 +69,7 @@ function WaitlistForm() {
   }
 
   return (
-    <div style={{ padding: '40px', background: 'var(--bg-color)', borderRadius: '20px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', maxWidth: '500px', margin: '0 auto' }}>
+    <div style={{ padding: '40px', background: '#000', border: '1px solid #333', borderRadius: '20px', boxShadow: '0 4px 20px rgba(0,0,0,0.5)', maxWidth: '500px', margin: '0 auto' }}>
       <h3 style={{ fontSize: '24px', marginBottom: '10px' }}>Pre-order Now</h3>
       <p style={{ color: 'var(--text-secondary)', marginBottom: '30px' }}>
         Get notified when we launch and receive an exclusive <span style={{ color: 'var(--link-color)', fontWeight: 'bold' }}>50% discount</span> and a chance to get <span style={{ color: 'var(--link-color)', fontWeight: 'bold' }}>lifetime free access</span>.
@@ -89,7 +89,7 @@ function WaitlistForm() {
               padding: '12px', 
               borderRadius: '8px', 
               border: '1px solid var(--border-color)',
-              background: 'var(--bg-color)',
+              background: '#111',
               color: 'var(--text-color)',
               fontSize: '16px',
               boxSizing: 'border-box'
@@ -110,7 +110,7 @@ function WaitlistForm() {
                 padding: '12px', 
                 borderRadius: '8px', 
                 border: '1px solid var(--border-color)',
-                background: 'var(--bg-color)',
+                background: '#111',
                 color: 'var(--text-color)',
                 fontSize: '16px',
                 boxSizing: 'border-box'
@@ -127,7 +127,7 @@ function WaitlistForm() {
             width: '100%', 
             padding: '15px', 
             background: 'var(--link-color)', 
-            color: 'white', 
+            color: 'black', 
             border: 'none', 
             borderRadius: '30px', 
             fontSize: '16px', 
@@ -170,7 +170,7 @@ function App() {
             style={{ 
               padding: '15px 40px', 
               background: 'var(--link-color)', 
-              color: 'white', 
+              color: 'black', 
               border: 'none', 
               borderRadius: '30px', 
               fontSize: '18px', 
