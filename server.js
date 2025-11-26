@@ -2,8 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { Resend } = require('resend');
-const fs = require('fs');
-const path = require('path');
+const mongoose = require('mongoose');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -13,6 +12,26 @@ const PORT = process.env.PORT || 3001;
 // Best practice: Use process.env.RESEND_API_KEY in Vercel settings
 const resend = new Resend(process.env.RESEND_API_KEY || 're_DC2xVqMg_MvqwxSAJK4GiZxPNwct2bae6');
 
+// Connect to MongoDB
+// ⚠️ You must add MONGODB_URI to your Vercel Environment Variables
+const MONGODB_URI = process.env.MONGODB_URI;
+
+if (MONGODB_URI) {
+  mongoose.connect(MONGODB_URI)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('MongoDB connection error:', err));
+} else {
+  console.warn('MONGODB_URI not found. Data will not be persisted!');
+}
+
+// Define User Schema
+const userSchema = new mongoose.Schema({
+  email: { type: String, required: true, unique: true },
+  createdAt: { type: Date, default: Date.now }
+});
+
+const User = mongoose.model('User', userSchema);
+
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -20,49 +39,20 @@ app.use(bodyParser.json());
 // In production, use Redis or a database
 const verificationCodes = {};
 
-// File path for the waitlist
-// In Vercel (production), we can only write to /tmp, but data is ephemeral.
-const isVercel = process.env.VERCEL === '1';
-const WAITLIST_FILE = isVercel 
-  ? path.join('/tmp', 'waitlist.json') 
-  : path.join(__dirname, 'waitlist.json');
-
-// Helper to read waitlist
-const getWaitlist = () => {
-  if (!fs.existsSync(WAITLIST_FILE)) {
-    return [];
-  }
-  const data = fs.readFileSync(WAITLIST_FILE);
-  return JSON.parse(data);
-};
-
-// Helper to save to waitlist
-const addToWaitlist = (email) => {
-  const list = getWaitlist();
-  if (!list.includes(email)) {
-    list.push(email);
-    fs.writeFileSync(WAITLIST_FILE, JSON.stringify(list, null, 2));
-  }
-};
-
-// Configure Nodemailer
-// ⚠️ 重要：请替换下面的配置为你自己的邮箱信息
-/*
-const transporter = nodemailer.createTransport({
-    service: 'gmail', // 使用 Gmail
-    auth: {
-        user: 'your-email@gmail.com', // 替换为你的 Gmail 邮箱
-        pass: 'your-app-password' // 替换为你的 Gmail "应用专用密码" (注意：不是你的登录密码！)
-    }
-});
-*/
-
 // Endpoint to send verification code
 app.post('/api/send-code', async (req, res) => {
   const { email } = req.body;
   
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
+  }
+
+  // Check if user already exists
+  if (MONGODB_URI) {
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ error: 'This email is already registered.' });
+    }
   }
 
   // Generate 6-digit code
@@ -99,7 +89,7 @@ app.post('/api/send-code', async (req, res) => {
 });
 
 // Endpoint to verify code
-app.post('/api/verify-code', (req, res) => {
+app.post('/api/verify-code', async (req, res) => {
   const { email, code } = req.body;
 
   if (!email || !code) {
@@ -108,11 +98,43 @@ app.post('/api/verify-code', (req, res) => {
 
   if (verificationCodes[email] === code) {
     // Code is valid
-    addToWaitlist(email);
-    delete verificationCodes[email]; // Invalidate code after use
-    return res.json({ success: true, message: 'Verified successfully' });
+    try {
+      if (MONGODB_URI) {
+        // Save to MongoDB
+        // Use findOneAndUpdate with upsert to prevent race conditions/duplicates
+        await User.findOneAndUpdate(
+          { email }, 
+          { email, createdAt: new Date() }, 
+          { upsert: true, new: true }
+        );
+      } else {
+        console.warn('MongoDB not connected. User not saved to DB.');
+      }
+      
+      delete verificationCodes[email]; // Invalidate code after use
+      return res.json({ success: true, message: 'Verified successfully' });
+    } catch (error) {
+      console.error('Error saving user:', error);
+      return res.status(500).json({ error: 'Database error' });
+    }
   } else {
     return res.status(400).json({ error: 'Invalid code' });
+  }
+});
+
+// Admin endpoint to get users
+app.get('/api/users', async (req, res) => {
+  const { secret } = req.query;
+  // Simple protection
+  if (secret !== process.env.ADMIN_SECRET && secret !== 'recallai-admin-2024') {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  if (MONGODB_URI) {
+    const users = await User.find().sort({ createdAt: -1 });
+    res.json(users);
+  } else {
+    res.json([]);
   }
 });
 
