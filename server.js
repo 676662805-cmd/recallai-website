@@ -62,7 +62,11 @@ app.post('/api/send-code', async (req, res) => {
   if (supabase) {
     const { error } = await supabase
       .from('verification_codes')
-      .upsert({ email, code }, { onConflict: 'email' });
+      .upsert({ 
+        email, 
+        code,
+        created_at: new Date().toISOString() 
+      }, { onConflict: 'email' });
       
     if (error) {
       console.error("Supabase Error storing code:", error);
@@ -83,7 +87,7 @@ app.post('/api/send-code', async (req, res) => {
               <h2>RecallAI Waitlist Verification</h2>
               <p>Your verification code is:</p>
               <h1 style="color: #0033cc; letter-spacing: 5px;">${code}</h1>
-              <p>This code will expire in 10 minutes.</p>
+              <p>This code will expire in 1 minute.</p>
              </div>`
     });
 
@@ -113,17 +117,32 @@ app.post('/api/verify-code', async (req, res) => {
     // Retrieve code from Supabase
     const { data, error } = await supabase
       .from('verification_codes')
-      .select('code')
+      .select('code, created_at')
       .eq('email', email)
       .single();
 
-    if (data && data.code === code) {
+    if (data) {
+      if (data.code !== code) {
+        return res.status(400).json({ error: 'Invalid code' });
+      }
+
+      // Check expiration (1 minute = 60000 ms)
+      const createdAt = new Date(data.created_at).getTime();
+      const now = new Date().getTime();
+      
+      if ((now - createdAt) > 60000) {
+        return res.status(400).json({ error: 'Code expired. Please request a new one.' });
+      }
+
       isValid = true;
+    } else {
+      return res.status(400).json({ error: 'Invalid code' });
     }
   } else {
     // Fallback for local testing without Supabase (not recommended for prod)
     // isValid = verificationCodes[email] === code; 
     console.warn("Supabase not connected. Cannot verify code.");
+    return res.status(500).json({ error: 'Database connection error' });
   }
 
   if (isValid) {
