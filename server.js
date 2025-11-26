@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 
 // In-memory store for verification codes (for demo purposes)
 // In production, use Redis or a database
-const verificationCodes = {};
+// const verificationCodes = {}; // REMOVED: In-memory store doesn't work on Vercel Serverless
 
 // Endpoint to send verification code
 app.post('/api/send-code', async (req, res) => {
@@ -58,8 +58,19 @@ app.post('/api/send-code', async (req, res) => {
   // Generate 6-digit code
   const code = Math.floor(100000 + Math.random() * 900000).toString();
   
-  // Store code
-  verificationCodes[email] = code;
+  // Store code in Supabase (Persistent storage)
+  if (supabase) {
+    const { error } = await supabase
+      .from('verification_codes')
+      .upsert({ email, code }, { onConflict: 'email' });
+      
+    if (error) {
+      console.error("Supabase Error storing code:", error);
+      return res.status(500).json({ error: 'Database error storing code' });
+    }
+  } else {
+    console.warn("Supabase not connected. Code will not be verifiable in production!");
+  }
   
   console.log(`[LOG] Generated code for ${email}: ${code}`);
 
@@ -96,27 +107,48 @@ app.post('/api/verify-code', async (req, res) => {
     return res.status(400).json({ error: 'Email and code are required' });
   }
 
-  if (verificationCodes[email] === code) {
+  let isValid = false;
+
+  if (supabase) {
+    // Retrieve code from Supabase
+    const { data, error } = await supabase
+      .from('verification_codes')
+      .select('code')
+      .eq('email', email)
+      .single();
+
+    if (data && data.code === code) {
+      isValid = true;
+    }
+  } else {
+    // Fallback for local testing without Supabase (not recommended for prod)
+    // isValid = verificationCodes[email] === code; 
+    console.warn("Supabase not connected. Cannot verify code.");
+  }
+
+  if (isValid) {
     // Code is valid
     try {
       if (supabase) {
-        // Save to Supabase
+        // Save to Supabase Waitlist
         const { error } = await supabase
           .from('waitlist')
           .insert([{ email }]);
         
         if (error) {
-          // Handle duplicate key error specifically if needed, though we checked before sending code
           if (error.code === '23505') { // Postgres unique violation code
              return res.status(400).json({ error: 'This email is already registered.' });
           }
           throw error;
         }
-      } else {
-        console.warn('Supabase not connected. User not saved to DB.');
+
+        // Delete the used verification code
+        await supabase
+          .from('verification_codes')
+          .delete()
+          .eq('email', email);
       }
       
-      delete verificationCodes[email]; // Invalidate code after use
       return res.json({ success: true, message: 'Verified successfully' });
     } catch (error) {
       console.error('Error saving user:', error);
