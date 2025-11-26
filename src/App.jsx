@@ -70,7 +70,7 @@ function WaitlistForm() {
 
   return (
     <div style={{ padding: '40px', background: 'var(--bg-color)', borderRadius: '20px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', maxWidth: '500px', margin: '0 auto' }}>
-      <h3 style={{ fontSize: '24px', marginBottom: '10px' }}>提前预约</h3>
+      <h3 style={{ fontSize: '24px', marginBottom: '10px' }}>Pre-order Now</h3>
       <p style={{ color: 'var(--text-secondary)', marginBottom: '30px' }}>
         Get notified when we launch and receive an exclusive <span style={{ color: 'var(--link-color)', fontWeight: 'bold' }}>50% discount</span> and a chance to get <span style={{ color: 'var(--link-color)', fontWeight: 'bold' }}>lifetime free access</span>.
       </p>
@@ -182,7 +182,7 @@ function App() {
             onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
             onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
           >
-            提前预约
+            Pre-order Now
           </button>
           <p style={{ marginTop: '10px', fontSize: '14px', color: 'var(--text-tertiary)' }}>
             50% OFF + Chance for Lifetime Free Access
