@@ -6,13 +6,15 @@ function WaitlistForm() {
   const [step, setStep] = useState('email'); // 'email', 'verify', 'success'
   const [loading, setLoading] = useState(false);
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
+
   const handleSendCode = async (e) => {
     e.preventDefault();
     if (!email) return alert('Please enter your email');
     
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/send-code', {
+      const response = await fetch(`${API_BASE_URL}/send-code`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
@@ -34,13 +36,13 @@ function WaitlistForm() {
 
   const handleVerify = async (e) => {
     e.preventDefault();
-    if (!code) return alert('Please enter the code');
-    
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/verify-code', {
+      const response = await fetch(`${API_BASE_URL}/verify-code`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, code })
+      });eaders: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, code })
       });
       
