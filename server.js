@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { Resend } = require('resend');
-const mongoose = require('mongoose');
+const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -12,25 +12,18 @@ const PORT = process.env.PORT || 3001;
 // Best practice: Use process.env.RESEND_API_KEY in Vercel settings
 const resend = new Resend(process.env.RESEND_API_KEY || 're_DC2xVqMg_MvqwxSAJK4GiZxPNwct2bae6');
 
-// Connect to MongoDB
-// ⚠️ You must add MONGODB_URI to your Vercel Environment Variables
-const MONGODB_URI = process.env.MONGODB_URI;
+// Initialize Supabase
+// ⚠️ You must add SUPABASE_URL and SUPABASE_KEY to your Vercel Environment Variables
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_KEY;
 
-if (MONGODB_URI) {
-  mongoose.connect(MONGODB_URI)
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.error('MongoDB connection error:', err));
+let supabase;
+if (SUPABASE_URL && SUPABASE_KEY) {
+  supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+  console.log('Initialized Supabase client');
 } else {
-  console.warn('MONGODB_URI not found. Data will not be persisted!');
+  console.warn('SUPABASE_URL or SUPABASE_KEY not found. Data will not be persisted!');
 }
-
-// Define User Schema
-const userSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-  createdAt: { type: Date, default: Date.now }
-});
-
-const User = mongoose.model('User', userSchema);
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -47,9 +40,14 @@ app.post('/api/send-code', async (req, res) => {
     return res.status(400).json({ error: 'Email is required' });
   }
 
-  // Check if user already exists
-  if (MONGODB_URI) {
-    const existingUser = await User.findOne({ email });
+  // Check if user already exists in Supabase
+  if (supabase) {
+    const { data: existingUser, error } = await supabase
+      .from('users')
+      .select('email')
+      .eq('email', email)
+      .single();
+    
     if (existingUser) {
       return res.status(400).json({ error: 'This email is already registered.' });
     }
@@ -99,16 +97,21 @@ app.post('/api/verify-code', async (req, res) => {
   if (verificationCodes[email] === code) {
     // Code is valid
     try {
-      if (MONGODB_URI) {
-        // Save to MongoDB
-        // Use findOneAndUpdate with upsert to prevent race conditions/duplicates
-        await User.findOneAndUpdate(
-          { email }, 
-          { email, createdAt: new Date() }, 
-          { upsert: true, new: true }
-        );
+      if (supabase) {
+        // Save to Supabase
+        const { error } = await supabase
+          .from('users')
+          .insert([{ email }]);
+        
+        if (error) {
+          // Handle duplicate key error specifically if needed, though we checked before sending code
+          if (error.code === '23505') { // Postgres unique violation code
+             return res.status(400).json({ error: 'This email is already registered.' });
+          }
+          throw error;
+        }
       } else {
-        console.warn('MongoDB not connected. User not saved to DB.');
+        console.warn('Supabase not connected. User not saved to DB.');
       }
       
       delete verificationCodes[email]; // Invalidate code after use
@@ -130,8 +133,16 @@ app.get('/api/users', async (req, res) => {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  if (MONGODB_URI) {
-    const users = await User.find().sort({ createdAt: -1 });
+  if (supabase) {
+    const { data: users, error } = await supabase
+      .from('users')
+      .select('*')
+      .order('created_at', { ascending: false });
+    
+    if (error) {
+      console.error('Error fetching users:', error);
+      return res.status(500).json({ error: 'Failed to fetch users' });
+    }
     res.json(users);
   } else {
     res.json([]);

@@ -58,7 +58,7 @@ function AdminPanel() {
             {users.map((user, index) => (
               <tr key={index} style={{ borderBottom: '1px solid #222' }}>
                 <td style={{ padding: '10px' }}>{user.email}</td>
-                <td style={{ padding: '10px' }}>{new Date(user.createdAt).toLocaleString()}</td>
+                <td style={{ padding: '10px' }}>{new Date(user.created_at || user.createdAt).toLocaleString()}</td>
               </tr>
             ))}
           </tbody>
