@@ -55,13 +55,10 @@ app.post('/api/send-code', async (req, res) => {
     return res.status(400).json({ error: 'Email is required' });
   }
 
-  // Check Supabase connection first
+  // Warn if Supabase is not connected (but continue to send email)
   if (!supabase) {
-    console.error('❌ /api/send-code - Supabase not connected!');
-    return res.status(500).json({ 
-      error: 'Database not configured',
-      hint: 'Please set SUPABASE_URL and SUPABASE_KEY in Vercel Environment Variables'
-    });
+    console.warn('⚠️  /api/send-code - Supabase not connected! Code will not be verifiable.');
+    console.warn('   Please set SUPABASE_URL and SUPABASE_KEY in Vercel Environment Variables');
   }
 
   // Check if user already exists in Supabase
@@ -90,16 +87,16 @@ app.post('/api/send-code', async (req, res) => {
         created_at: new Date().toISOString() 
       }, { onConflict: 'email' });
       
-    if (error) {
+      if (error) {
       console.error("Supabase Error storing code:", error);
       return res.status(500).json({ error: 'Database error storing code' });
     }
+    console.log('[LOG] Code stored in Supabase verification_codes table');
+  } else {
+    console.warn('[WARN] Supabase not available - code will NOT be stored!');
   }
   
-  console.log(`[LOG] Generated code for ${email}: ${code}`);
-  console.log('[LOG] Code stored in Supabase verification_codes table');
-
-  try {
+  console.log(`[LOG] Generated code for ${email}: ${code}`);  try {
     const data = await resend.emails.send({
       from: 'RecallAI <team@recalls-ai.com>', // 已更新为您自己的域名邮箱
       to: email,
