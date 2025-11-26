@@ -14,6 +14,8 @@ const resend = new Resend(process.env.RESEND_API_KEY || 're_DC2xVqMg_MvqwxSAJK4G
 
 // Initialize Supabase
 // ⚠️ You must add SUPABASE_URL and SUPABASE_KEY to your Vercel Environment Variables
+// IMPORTANT: To bypass RLS (Row Level Security) for the Admin Panel and User Checks, 
+// use the "service_role" key for SUPABASE_KEY, NOT the "anon" key.
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
 
@@ -43,7 +45,7 @@ app.post('/api/send-code', async (req, res) => {
   // Check if user already exists in Supabase
   if (supabase) {
     const { data: existingUser, error } = await supabase
-      .from('users')
+      .from('waitlist')
       .select('email')
       .eq('email', email)
       .single();
@@ -100,7 +102,7 @@ app.post('/api/verify-code', async (req, res) => {
       if (supabase) {
         // Save to Supabase
         const { error } = await supabase
-          .from('users')
+          .from('waitlist')
           .insert([{ email }]);
         
         if (error) {
@@ -135,7 +137,7 @@ app.get('/api/users', async (req, res) => {
 
   if (supabase) {
     const { data: users, error } = await supabase
-      .from('users')
+      .from('waitlist')
       .select('*')
       .order('created_at', { ascending: false });
     
