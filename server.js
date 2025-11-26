@@ -19,18 +19,25 @@ const resend = new Resend(process.env.RESEND_API_KEY || 're_DC2xVqMg_MvqwxSAJK4G
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
 
-let supabase;
+// Enhanced debugging
+console.log('Environment Variables Check:');
+console.log('SUPABASE_URL:', SUPABASE_URL ? SUPABASE_URL.substring(0, 30) + '...' : 'NOT SET');
+console.log('SUPABASE_KEY:', SUPABASE_KEY ? 'SET (length: ' + SUPABASE_KEY.length + ')' : 'NOT SET');
+console.log('RESEND_API_KEY:', process.env.RESEND_API_KEY ? 'SET' : 'NOT SET');
+
+let supabase = null;
 if (SUPABASE_URL && SUPABASE_KEY) {
   try {
     supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-    console.log('Initialized Supabase client with URL:', SUPABASE_URL);
+    console.log('✓ Supabase client initialized successfully');
   } catch (err) {
-    console.error('Failed to initialize Supabase client:', err);
+    console.error('✗ Failed to initialize Supabase client:', err.message);
+    supabase = null;
   }
 } else {
-  console.warn('SUPABASE_URL or SUPABASE_KEY not found. Data will not be persisted!');
-  console.warn('SUPABASE_URL present:', !!SUPABASE_URL);
-  console.warn('SUPABASE_KEY present:', !!SUPABASE_KEY);
+  console.error('✗ SUPABASE_URL or SUPABASE_KEY not found!');
+  console.error('  SUPABASE_URL present:', !!SUPABASE_URL);
+  console.error('  SUPABASE_KEY present:', !!SUPABASE_KEY);
 }
 
 app.use(cors());
@@ -46,6 +53,15 @@ app.post('/api/send-code', async (req, res) => {
   
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
+  }
+
+  // Check Supabase connection first
+  if (!supabase) {
+    console.error('❌ /api/send-code - Supabase not connected!');
+    return res.status(500).json({ 
+      error: 'Database not configured',
+      hint: 'Please set SUPABASE_URL and SUPABASE_KEY in Vercel Environment Variables'
+    });
   }
 
   // Check if user already exists in Supabase
@@ -78,11 +94,10 @@ app.post('/api/send-code', async (req, res) => {
       console.error("Supabase Error storing code:", error);
       return res.status(500).json({ error: 'Database error storing code' });
     }
-  } else {
-    console.warn("Supabase not connected. Code will not be verifiable in production!");
   }
   
   console.log(`[LOG] Generated code for ${email}: ${code}`);
+  console.log('[LOG] Code stored in Supabase verification_codes table');
 
   try {
     const data = await resend.emails.send({
@@ -117,6 +132,18 @@ app.post('/api/verify-code', async (req, res) => {
     return res.status(400).json({ error: 'Email and code are required' });
   }
 
+  // Check Supabase connection first
+  if (!supabase) {
+    console.error('❌ /api/verify-code - Supabase not connected!');
+    console.error('Debug - SUPABASE_URL:', !!process.env.SUPABASE_URL);
+    console.error('Debug - SUPABASE_KEY:', !!process.env.SUPABASE_KEY);
+    return res.status(500).json({ 
+      error: 'Database not configured',
+      hint: 'Please set SUPABASE_URL and SUPABASE_KEY in Vercel Environment Variables'
+    });
+  }
+
+  console.log(`[LOG] Verifying code for email: ${email}`);
   let isValid = false;
 
   if (supabase) {
@@ -142,14 +169,9 @@ app.post('/api/verify-code', async (req, res) => {
 
       isValid = true;
     } else {
-      return res.status(400).json({ error: 'Invalid code' });
+      console.log(`[LOG] No verification code found for email: ${email}`);
+      return res.status(400).json({ error: 'Invalid code or code not found' });
     }
-  } else {
-    // Fallback for local testing without Supabase (not recommended for prod)
-    // isValid = verificationCodes[email] === code; 
-    console.warn("Supabase not connected. Cannot verify code.");
-    console.warn("Debug Info - URL:", !!process.env.SUPABASE_URL, "Key:", !!process.env.SUPABASE_KEY);
-    return res.status(500).json({ error: 'Database connection error. Please check server logs.' });
   }
 
   if (isValid) {
