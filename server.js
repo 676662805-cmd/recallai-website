@@ -20,10 +20,12 @@ const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
 
 // Enhanced debugging
-console.log('Environment Variables Check:');
+console.log('=== Environment Variables Check ===');
 console.log('SUPABASE_URL:', SUPABASE_URL ? SUPABASE_URL.substring(0, 30) + '...' : 'NOT SET');
 console.log('SUPABASE_KEY:', SUPABASE_KEY ? 'SET (length: ' + SUPABASE_KEY.length + ')' : 'NOT SET');
 console.log('RESEND_API_KEY:', process.env.RESEND_API_KEY ? 'SET' : 'NOT SET');
+console.log('Available env keys:', Object.keys(process.env).filter(k => k.includes('SUPABASE') || k.includes('RESEND')).join(', '));
+console.log('=================================');
 
 let supabase = null;
 if (SUPABASE_URL && SUPABASE_KEY) {
