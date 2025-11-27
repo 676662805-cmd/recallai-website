@@ -298,17 +298,16 @@ function InteractiveDemo() {
   }, []);
 
   return (
-      return (
     <div className="w-full max-w-4xl mx-auto mt-10 mb-10">
         <h1 className="text-3xl font-bold text-white mb-6 text-center">Hover to View Details & Drag</h1>
         <p className="text-center text-gray-400 mb-8">Hover over the laptop image to see the overlay, then drag it around.</p>
         
-        <div className="relative group" ref={containerRef}>
-            <div className="image-container mx-auto relative z-0">
+        <div className="group relative w-fit mx-auto" ref={containerRef}>
+            <div className="image-container relative z-0">
                 <img 
                     src="/laptop.png" 
                     alt="Main: Laptop Video Conference" 
-                    className="rounded-lg shadow-xl cursor-pointer"
+                    className="rounded-lg shadow-xl cursor-pointer block"
                 />
             </div>
 
