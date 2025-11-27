@@ -140,7 +140,7 @@ function WaitlistForm() {
     <div style={{ padding: '40px', background: '#000', border: '1px solid #333', borderRadius: '20px', boxShadow: '0 4px 20px rgba(0,0,0,0.5)', maxWidth: '500px', margin: '0 auto' }}>
       <h3 style={{ fontSize: '24px', marginBottom: '10px' }}>Pre-order Now</h3>
       <p style={{ color: 'var(--text-secondary)', marginBottom: '30px' }}>
-        You could use out App<span style={{ color: 'var(--link-color)', fontWeight: 'bold' }}>Free Right Now!!!</span>
+        You could use our App <span style={{ color: 'var(--link-color)', fontWeight: 'bold' }}>Free Right Now!!!</span>
       </p>
       
       <form onSubmit={step === 'email' ? handleSendCode : handleVerify}>
