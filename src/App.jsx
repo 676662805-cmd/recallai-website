@@ -130,8 +130,8 @@ function WaitlistForm() {
   if (step === 'success') {
     return (
       <div style={{ padding: '40px', background: '#000', border: '1px solid #333', borderRadius: '20px', boxShadow: '0 4px 20px var(--shadow-color)', maxWidth: '500px', margin: '0 auto' }}>
-        <h3 style={{ fontSize: '24px', color: 'var(--link-color)', marginBottom: '10px' }}>🎉 You're on the list!</h3>
-        <p style={{ color: 'var(--text-secondary)' }}>Thanks for joining. We've sent a confirmation email with your 50% off coupon code.</p>
+        <h3 style={{ fontSize: '24px', color: 'var(--link-color)', marginBottom: '10px' }}>You're on the list!</h3>
+        <p style={{ color: 'var(--text-secondary)' }}>Thanks for joining. You could use our App free right now!!!</p>
       </div>
     );
   }
@@ -140,7 +140,7 @@ function WaitlistForm() {
     <div style={{ padding: '40px', background: '#000', border: '1px solid #333', borderRadius: '20px', boxShadow: '0 4px 20px rgba(0,0,0,0.5)', maxWidth: '500px', margin: '0 auto' }}>
       <h3 style={{ fontSize: '24px', marginBottom: '10px' }}>Pre-order Now</h3>
       <p style={{ color: 'var(--text-secondary)', marginBottom: '30px' }}>
-        Get notified when we launch and receive an exclusive <span style={{ color: 'var(--link-color)', fontWeight: 'bold' }}>50% discount</span> and a chance to get <span style={{ color: 'var(--link-color)', fontWeight: 'bold' }}>lifetime free access</span>.
+        You could use out App<span style={{ color: 'var(--link-color)', fontWeight: 'bold' }}>Free Right Now!!!</span>
       </p>
       
       <form onSubmit={step === 'email' ? handleSendCode : handleVerify}>
@@ -380,7 +380,7 @@ function App() {
             Pre-order Now
           </button>
           <p style={{ marginTop: '10px', fontSize: '14px', color: 'var(--text-tertiary)' }}>
-            50% OFF + Chance for Lifetime Free Access
+            Limited-Time Free Trial - Register to Activate Now!
           </p>
         </div>
 
