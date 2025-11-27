@@ -54,3 +54,26 @@ body {
 #root {
   min-height: 100vh;
 }
+
+/* Interactive Demo Styles */
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.popover-image {
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+  transform: scale(0.8);
+  transform-origin: center center;
+  position: absolute;
+  cursor: grab;
+}
+
+.group:hover .popover-image {
+  transform: scale(1);
+}
+
+.popover-image.dragging {
+  cursor: grabbing;
+}
