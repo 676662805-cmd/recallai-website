@@ -327,8 +327,6 @@ function InteractiveDemo() {
     </div>
   );
 }
-  );
-}
 
 function App() {
   const [showWaitlist, setShowWaitlist] = useState(false);
