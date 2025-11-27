@@ -299,8 +299,8 @@ function InteractiveDemo() {
 
   return (
     <div className="w-full max-w-4xl mx-auto relative mt-10 mb-10 group" ref={containerRef}>
-        <h1 className="text-3xl font-bold text-white mb-6 text-center">Hover to View Details & Drag</h1>
-        <p className="text-center text-gray-400 mb-8">Hover over the laptop image to see the overlay, then drag it around.</p>
+        <h1 className="text-3xl font-bold text-white mb-6 text-center">Real-Time Recall Knowledge Cards Window</h1>
+        <p className="text-center text-gray-400 mb-8">Real-time knowledge cards instantly boost your memory, and when cards aren't available, our AI helps structure your thoughts for complete and confident answers.</p>
         
         <div className="image-container mx-auto relative z-0">
             <img 
@@ -354,7 +354,7 @@ function App() {
 
       {/* Hero Section */}
       <header style={{ textAlign: 'center', padding: '80px 20px', background: 'var(--header-bg)', transition: 'background-color 0.3s' }}>
-        <h1 style={{ fontSize: '48px', marginBottom: '20px' }}>Instant Recall, Confident Interviewing</h1>
+        <h1 style={{ fontSize: '48px', marginBottom: '20px' }}>Instant Recall Confident Interviewing</h1>
         <p style={{ fontSize: '20px', color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 40px' }}>
           Knowledge Cards + Real-time voice transcription + AI smart prompts + Invisible overlay window<br/>Eliminate the fear of forgetting; ensure every answer is precise and complete
         </p>
