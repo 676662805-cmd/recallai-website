@@ -356,7 +356,7 @@ function App() {
       <header style={{ textAlign: 'center', padding: '80px 20px', background: 'var(--header-bg)', transition: 'background-color 0.3s' }}>
         <h1 style={{ fontSize: '48px', marginBottom: '20px' }}>Instant Recall, Confident Interviewing</h1>
         <p style={{ fontSize: '20px', color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 40px' }}>
-          Real-time voice transcription + AI smart prompts + Knowledge Cards + Invisible overlay window<br/>Eliminate the fear of forgetting; ensure every answer is precise and complete
+          Knowledge Cards + Real-time voice transcription + AI smart prompts + Invisible overlay window<br/>Eliminate the fear of forgetting; ensure every answer is precise and complete
         </p>
         
         <div style={{ marginBottom: '40px' }}>
