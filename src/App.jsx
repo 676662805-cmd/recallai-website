@@ -416,17 +416,22 @@ function App() {
       <InteractiveDemo />
 
       {/* Features Section */}
+      {/* Features Section */}
       <section id="features" style={{ padding: '60px 20px', maxWidth: '1000px', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
-          <div>
+        <div style={{ 
+            display: 'flex', // 重点：更改为 flex
+            gap: '40px', 
+            justifyContent: 'space-between' // 选项：让元素之间均匀分布
+        }}>
+          <div style={{ flex: 1 }}> {/* 重点：添加 flex: 1 让每个模块平均占据空间 */}
             <h3>Knowledge Cards</h3>
             <p>Context-Aware Knowledge Cards Instantly pop up relevant key points and facts based on the conversation, ensuring you always have the right information at your fingertips.</p>
           </div>
-          <div>
+          <div style={{ flex: 1 }}>
             <h3>Lightning-Fast Transcription</h3>
             <p>Powered by Groq Turbo engine, 0.2s real-time output. Even faster than the interviewer speaks.</p>
           </div>
-          <div>
+          <div style={{ flex: 1 }}>
             <h3>AI Smart Backup</h3>
             <p>Even for unprepared questions, AI generates contextual high-EQ answers in real time.</p>
           </div>
