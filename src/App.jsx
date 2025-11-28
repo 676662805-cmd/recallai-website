@@ -429,8 +429,8 @@ function App() {
           </div>
 
           {/* Feature 2 */}
-          <div className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-lg hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/20 group">
-            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+          <div className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-lg hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 group">
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap">
               Lightning-Fast Transcription
             </h3>
             <p className="text-gray-400 leading-relaxed">
@@ -439,8 +439,8 @@ function App() {
           </div>
 
           {/* Feature 3 */}
-          <div className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-lg hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl hover:shadow-green-500/20 group">
-            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+          <div className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-lg hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 group">
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               AI Smart Backup
             </h3>
             <p className="text-gray-400 leading-relaxed">
