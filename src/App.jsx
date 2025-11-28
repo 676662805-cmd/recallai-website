@@ -421,7 +421,7 @@ function App() {
           <div>
             {/* 标题加粗 - 方法一：在 H3 中设置 CSS 样式 */}
             <h3 style={{ fontWeight: 'bold' }}>Knowledge Cards</h3> 
-            <p>Context-Aware Cards instantly pop up key points and relevant facts based on the discussion, ensuring you always have the right information ready.</p>
+            <p>Create and customize your own knowledge cards freely. These cards will automatically surface at the perfect moment to instantly fill any gaps in your memory.</p>
           </div>
           <div>
             <h3 style={{ fontWeight: 'bold' }}>Lightning-Fast Transcription</h3>
