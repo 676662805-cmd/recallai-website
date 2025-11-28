@@ -299,8 +299,8 @@ function InteractiveDemo() {
 
   return (
     <div className="w-full max-w-4xl mx-auto mt-10 mb-10">
-        <h1 className="text-3xl font-bold text-white mb-6 text-center">Hover to View Details & Drag</h1>
-        <p className="text-center text-gray-400 mb-8">Hover over the laptop image to see the overlay, then drag it around.</p>
+        <h1 className="text-3xl font-bold text-white mb-6 text-center">Real-time Recall Knowledge Cards Window</h1>
+        <p className="text-center text-gray-400 mb-8">Real-time knowledge cards instantly boost your memory, and when cards aren't available, out AI helps structure your thoughts for complete and confident answers.</p>
         
         <div className="group relative w-fit mx-auto" ref={containerRef}>
             <div className="image-container relative z-0">
