@@ -431,7 +431,7 @@ function App() {
           {/* Feature 2 */}
           <div className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-lg hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 group">
             <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap">
-              Lightning-Fast Transcription
+              Lightning Transcription
             </h3>
             <p className="text-gray-400 leading-relaxed">
               Powered by the Groq Turbo engine, output is delivered in 0.2s real-time. This is even faster than the speed at which the interviewer speaks.
