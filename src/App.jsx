@@ -416,20 +416,36 @@ function App() {
       <InteractiveDemo />
 
       {/* Features Section */}
-      <section id="features" style={{ padding: '60px 20px', maxWidth: '1000px', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '40px' }}> {/* 沿用上次修改后的三列布局 */}
-          <div>
-            {/* 标题加粗 - 方法一：在 H3 中设置 CSS 样式 */}
-            <h3 style={{ fontWeight: 'bold' }}>Knowledge Cards</h3> 
-            <p>Create and customize your own knowledge cards freely. These cards will automatically surface at the perfect moment to instantly fill any gaps in your memory.</p>
+      <section id="features" className="py-20 px-5 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {/* Feature 1 */}
+          <div className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-lg hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 group">
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Knowledge Cards
+            </h3>
+            <p className="text-gray-400 leading-relaxed">
+              Create and customize your own knowledge cards freely. These cards will automatically surface at the perfect moment to instantly fill any gaps in your memory.
+            </p>
           </div>
-          <div>
-            <h3 style={{ fontWeight: 'bold' }}>Lightning-Fast Transcription</h3>
-            <p>Powered by the Groq Turbo engine, output is delivered in 0.2s real-time. This is even faster than the speed at which the interviewer speaks.</p>
+
+          {/* Feature 2 */}
+          <div className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-lg hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/20 group">
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+              Lightning-Fast Transcription
+            </h3>
+            <p className="text-gray-400 leading-relaxed">
+              Powered by the Groq Turbo engine, output is delivered in 0.2s real-time. This is even faster than the speed at which the interviewer speaks.
+            </p>
           </div>
-          <div>
-            <h3 style={{ fontWeight: 'bold' }}>AI Smart Backup</h3>
-            <p>For all questions, including those unprepared, the AI generates contextual and high-EQ answers instantly in real-time to back you up.</p>
+
+          {/* Feature 3 */}
+          <div className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-lg hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl hover:shadow-green-500/20 group">
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+              AI Smart Backup
+            </h3>
+            <p className="text-gray-400 leading-relaxed">
+              For all questions, including those unprepared, the AI generates contextual and high-EQ answers instantly in real-time to back you up.
+            </p>
           </div>
         </div>
       </section>
