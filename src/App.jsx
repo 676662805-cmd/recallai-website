@@ -356,7 +356,9 @@ function App() {
 
       {/* Hero Section */}
       <header style={{ textAlign: 'center', padding: '80px 20px', background: 'var(--header-bg)', transition: 'background-color 0.3s' }}>
-        <h1 style={{ fontSize: '48px', marginBottom: '20px' }}>Instant Recall Confident Interviewing</h1>
+        <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent inline-block">
+          Instant Recall Confident Interviewing
+        </h1>
         <p style={{ fontSize: '20px', color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 40px' }}>
           Knowledge Cards + Real-time voice transcription + AI smart prompts + Invisible overlay window<br/>Eliminate the fear of forgetting; ensure every answer is precise and complete
         </p>
