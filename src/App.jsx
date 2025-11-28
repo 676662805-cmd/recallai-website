@@ -419,15 +419,15 @@ function App() {
       <section id="features" style={{ padding: '60px 20px', maxWidth: '1000px', margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
           <div>
-            <h3>👻 Ghost Window</h3>
-            <p>Fully transparent floating window with mouse-through. Operate Zoom/Teams directly without disrupting the interview flow.</p>
+            <h3>Knowledge Cards</h3>
+            <p>Context-Aware Knowledge Cards Instantly pop up relevant key points and facts based on the conversation, ensuring you always have the right information at your fingertips.</p>
           </div>
           <div>
-            <h3>⚡️ Lightning-Fast Transcription</h3>
+            <h3>Lightning-Fast Transcription</h3>
             <p>Powered by Groq Turbo engine, 0.2s real-time output. Even faster than the interviewer speaks.</p>
           </div>
           <div>
-            <h3>🧠 AI Smart Backup</h3>
+            <h3>AI Smart Backup</h3>
             <p>Even for unprepared questions, AI generates contextual high-EQ answers in real time.</p>
           </div>
         </div>
