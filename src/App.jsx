@@ -416,24 +416,20 @@ function App() {
       <InteractiveDemo />
 
       {/* Features Section */}
-      {/* Features Section */}
       <section id="features" style={{ padding: '60px 20px', maxWidth: '1000px', margin: '0 auto' }}>
-        <div style={{ 
-            display: 'flex', // 重点：更改为 flex
-            gap: '40px', 
-            justifyContent: 'space-between' // 选项：让元素之间均匀分布
-        }}>
-          <div style={{ flex: 1 }}> {/* 重点：添加 flex: 1 让每个模块平均占据空间 */}
-            <h3>Knowledge Cards</h3>
-            <p>Context-Aware Knowledge Cards Instantly pop up relevant key points and facts based on the conversation, ensuring you always have the right information at your fingertips.</p>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '40px' }}> {/* 沿用上次修改后的三列布局 */}
+          <div>
+            {/* 标题加粗 - 方法一：在 H3 中设置 CSS 样式 */}
+            <h3 style={{ fontWeight: 'bold' }}>Knowledge Cards</h3> 
+            <p>Context-Aware Cards instantly pop up key points and relevant facts based on the discussion, ensuring you always have the right information ready.</p>
           </div>
-          <div style={{ flex: 1 }}>
-            <h3>Lightning-Fast Transcription</h3>
-            <p>Powered by Groq Turbo engine, 0.2s real-time output. Even faster than the interviewer speaks.</p>
+          <div>
+            <h3 style={{ fontWeight: 'bold' }}>Lightning-Fast Transcription</h3>
+            <p>Powered by the Groq Turbo engine, output is delivered in 0.2s real-time. This is even faster than the speed at which the interviewer speaks.</p>
           </div>
-          <div style={{ flex: 1 }}>
-            <h3>AI Smart Backup</h3>
-            <p>Even for unprepared questions, AI generates contextual high-EQ answers in real time.</p>
+          <div>
+            <h3 style={{ fontWeight: 'bold' }}>AI Smart Backup</h3>
+            <p>For all questions, including those unprepared, the AI generates contextual and high-EQ answers instantly in real-time to back you up.</p>
           </div>
         </div>
       </section>
