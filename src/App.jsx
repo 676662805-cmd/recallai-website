@@ -219,6 +219,21 @@ function InteractiveDemo() {
   const [activeTab, setActiveTab] = useState('Interview');
   const tabs = ['Interview', 'Knowledge Cards', 'Interview Records'];
 
+  const tabContent = {
+    'Interview': {
+      title: "Real-time Recall Knowledge Cards Window",
+      description: "Real-time knowledge cards instantly boost your memory, and when cards aren't available, our AI helps structure your thoughts for complete and confident answers."
+    },
+    'Knowledge Cards': {
+      title: "Smart Knowledge Management",
+      description: "Create and customize your own knowledge cards freely. These cards will automatically surface at the perfect moment to instantly fill any gaps in your memory."
+    },
+    'Interview Records': {
+      title: "Comprehensive Interview History",
+      description: "Automatically save and organize every interview record. Review transcripts and AI analysis to continuously improve your interview skills."
+    }
+  };
+
   const handleMouseMove = React.useCallback((e) => {
     if (e.cancelable) e.preventDefault();
 
@@ -303,8 +318,8 @@ function InteractiveDemo() {
 
   return (
     <div className="w-full max-w-4xl mx-auto mt-10 mb-10">
-        <h1 className="text-3xl font-bold text-white mb-6 text-center">Real-time Recall Knowledge Cards Window</h1>
-        <p className="text-center text-gray-400 mb-8">Real-time knowledge cards instantly boost your memory, and when cards aren't available, out AI helps structure your thoughts for complete and confident answers.</p>
+        <h1 className="text-3xl font-bold text-white mb-6 text-center min-h-[40px] transition-all duration-300">{tabContent[activeTab].title}</h1>
+        <p className="text-center text-gray-400 mb-8 max-w-3xl mx-auto min-h-[50px] transition-all duration-300">{tabContent[activeTab].description}</p>
         
         <div className="group relative w-fit mx-auto" ref={containerRef}>
             {activeTab === 'Interview' ? (
