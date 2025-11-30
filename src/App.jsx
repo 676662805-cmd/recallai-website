@@ -395,6 +395,30 @@ function App() {
     if (params.get('admin') === 'true') {
       setShowAdmin(true);
     }
+
+    // Dynamic Favicon Generation
+    const setCircularFavicon = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 64;
+      canvas.height = 64;
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      img.src = '/app.png';
+      img.onload = () => {
+        ctx.beginPath();
+        ctx.arc(32, 32, 32, 0, 2 * Math.PI);
+        ctx.closePath();
+        ctx.clip();
+        ctx.drawImage(img, 0, 0, 64, 64);
+        
+        const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+        link.type = 'image/png';
+        link.rel = 'icon';
+        link.href = canvas.toDataURL();
+        document.getElementsByTagName('head')[0].appendChild(link);
+      };
+    };
+    setCircularFavicon();
   }, []);
 
   if (showAdmin) {
@@ -406,7 +430,7 @@ function App() {
       {/* Navigation */}
       <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 40px', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <img src="/app.png" alt="RecallAI Logo" style={{ width: '40px', height: '40px' }} />
+            <img src="/app.png" alt="RecallAI Logo" style={{ width: '40px', height: '40px', borderRadius: '10px' }} />
             <h1 style={{ fontSize: '24px', fontWeight: 'bold' }}>RecallAI</h1>
         </div>
         <div>
