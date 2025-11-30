@@ -406,7 +406,7 @@ function App() {
       {/* Navigation */}
       <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 40px', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <img src="/app.png" alt="RecallAI Logo" style={{ width: '40px', height: '40px', borderRadius: '10px' }} />
+            <img src="/app.png" alt="RecallAI Logo" style={{ width: '40px', height: '40px' }} />
             <h1 style={{ fontSize: '24px', fontWeight: 'bold' }}>RecallAI</h1>
         </div>
         <div>
