@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Analytics } from "@vercel/analytics/react";
 
 function AdminPanel() {
   const [users, setUsers] = useState([]);
@@ -581,6 +582,7 @@ function App() {
           </div>
         </div>
       )}
+      <Analytics />
     </div>
   );
 }
