@@ -138,7 +138,7 @@ function WaitlistForm() {
 
   return (
     <div style={{ padding: '40px', background: '#000', border: '1px solid #333', borderRadius: '20px', boxShadow: '0 4px 20px rgba(0,0,0,0.5)', maxWidth: '500px', margin: '0 auto' }}>
-      <h3 style={{ fontSize: '24px', marginBottom: '10px' }}>Pre-order Now</h3>
+      <h3 style={{ fontSize: '24px', marginBottom: '10px' }}>Download For Free</h3>
       <p style={{ color: 'var(--text-secondary)', marginBottom: '30px' }}>
         You could use our App <span style={{ color: 'var(--link-color)', fontWeight: 'bold' }}>Free Right Now!!!</span>
       </p>
@@ -438,10 +438,10 @@ function App() {
             onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
             onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
           >
-            Pre-order Now
+            Free Download
           </button>
           <p style={{ marginTop: '10px', fontSize: '14px', color: 'var(--text-tertiary)' }}>
-            Limited-Time Free Trial - Register to Activate Now!
+            Free During Our Beta Period!
           </p>
         </div>
 
