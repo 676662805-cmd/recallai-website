@@ -216,6 +216,8 @@ function InteractiveDemo() {
   const popoverRef = React.useRef(null);
   const containerRef = React.useRef(null);
   const dragOffset = React.useRef({ x: 0, y: 0 });
+  const [activeTab, setActiveTab] = useState('Interview');
+  const tabs = ['Interview', 'Meeting', 'Study'];
 
   const handleMouseMove = React.useCallback((e) => {
     if (e.cancelable) e.preventDefault();
@@ -292,10 +294,12 @@ function InteractiveDemo() {
         popover.style.top = `${initialTop}px`;
     };
 
-    setInitialPosition();
-    window.addEventListener('resize', setInitialPosition);
-    return () => window.removeEventListener('resize', setInitialPosition);
-  }, []);
+    if (activeTab === 'Interview') {
+        setInitialPosition();
+        window.addEventListener('resize', setInitialPosition);
+        return () => window.removeEventListener('resize', setInitialPosition);
+    }
+  }, [activeTab]);
 
   return (
     <div className="w-full max-w-4xl mx-auto mt-10 mb-10">
@@ -303,25 +307,55 @@ function InteractiveDemo() {
         <p className="text-center text-gray-400 mb-8">Real-time knowledge cards instantly boost your memory, and when cards aren't available, out AI helps structure your thoughts for complete and confident answers.</p>
         
         <div className="group relative w-fit mx-auto" ref={containerRef}>
-            <div className="image-container relative z-0">
-                <img 
-                    src="/laptop.png" 
-                    alt="Main: Laptop Video Conference" 
-                    className="rounded-lg shadow-xl cursor-pointer block"
-                />
-            </div>
+            {activeTab === 'Interview' ? (
+                <>
+                    <div className="image-container relative z-0">
+                        <img 
+                            src="/laptop.png" 
+                            alt="Main: Laptop Video Conference" 
+                            className="rounded-lg shadow-xl cursor-pointer block"
+                        />
+                    </div>
 
-            <div 
-                ref={popoverRef}
-                className="popover-image w-2/3 md:w-1/3 opacity-0 invisible group-hover:opacity-100 group-hover:visible z-10"
-                onMouseDown={handleMouseDown}
-                onTouchStart={handleMouseDown}
-            >
-                <img 
-                    src="/resume.png"
-                    alt="Popover: Resume Details" 
-                    className="rounded-md w-full h-auto shadow-2xl"
-                />
+                    <div 
+                        ref={popoverRef}
+                        className="popover-image w-2/3 md:w-1/3 opacity-0 invisible group-hover:opacity-100 group-hover:visible z-10"
+                        onMouseDown={handleMouseDown}
+                        onTouchStart={handleMouseDown}
+                    >
+                        <img 
+                            src="/resume.png"
+                            alt="Popover: Resume Details" 
+                            className="rounded-md w-full h-auto shadow-2xl"
+                        />
+                    </div>
+                </>
+            ) : (
+                <div className="image-container relative z-0 flex items-center justify-center bg-gray-900/50 rounded-lg border border-white/10 backdrop-blur-sm" style={{width: '800px', height: '500px', maxWidth: '100%'}}>
+                    <div className="text-center">
+                        <h3 className="text-2xl font-bold text-white mb-2">{activeTab} Mode</h3>
+                        <p className="text-gray-400">Coming Soon</p>
+                    </div>
+                </div>
+            )}
+        </div>
+
+        {/* Tab Bar */}
+        <div className="flex justify-center mt-8">
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-1.5 rounded-2xl flex gap-2">
+                {tabs.map(tab => (
+                    <button
+                        key={tab}
+                        onClick={() => setActiveTab(tab)}
+                        className={`px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
+                            activeTab === tab 
+                            ? 'bg-white/10 text-white shadow-lg border border-white/5' 
+                            : 'text-gray-400 hover:text-white hover:bg-white/5'
+                        }`}
+                    >
+                        {tab}
+                    </button>
+                ))}
             </div>
         </div>
     </div>
