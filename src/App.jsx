@@ -438,7 +438,7 @@ function App() {
             onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
             onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
           >
-            Free Download
+            Pre-Order Now
           </button>
           <p style={{ marginTop: '10px', fontSize: '14px', color: 'var(--text-tertiary)' }}>
             Free During Our Beta Period!
