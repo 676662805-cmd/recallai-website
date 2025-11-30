@@ -405,7 +405,10 @@ function App() {
     <div style={{ fontFamily: 'sans-serif', color: 'var(--text-color)', lineHeight: '1.6' }}>
       {/* Navigation */}
       <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 40px', alignItems: 'center' }}>
-        <h1 style={{ fontSize: '24px', fontWeight: 'bold' }}>RecallAI</h1>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <img src="/app.png" alt="RecallAI Logo" style={{ width: '32px', height: '32px', borderRadius: '8px' }} />
+            <h1 style={{ fontSize: '24px', fontWeight: 'bold' }}>RecallAI</h1>
+        </div>
         <div>
           <a href="#features" style={{ margin: '0 15px', textDecoration: 'none', color: 'var(--text-secondary)' }}>Features</a>
         </div>
@@ -438,7 +441,7 @@ function App() {
             onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
             onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
           >
-            Pre-Order Now
+            Reserve Now
           </button>
           <p style={{ marginTop: '10px', fontSize: '14px', color: 'var(--text-tertiary)' }}>
             Free During Our Beta Period!
