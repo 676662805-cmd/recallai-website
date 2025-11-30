@@ -217,7 +217,7 @@ function InteractiveDemo() {
   const containerRef = React.useRef(null);
   const dragOffset = React.useRef({ x: 0, y: 0 });
   const [activeTab, setActiveTab] = useState('Interview');
-  const tabs = ['Interview', 'Meeting', 'Study'];
+  const tabs = ['Interview', 'Knowledge Cards', 'Interview Records'];
 
   const handleMouseMove = React.useCallback((e) => {
     if (e.cancelable) e.preventDefault();
@@ -330,6 +330,14 @@ function InteractiveDemo() {
                         />
                     </div>
                 </>
+            ) : activeTab === 'Knowledge Cards' ? (
+                <div className="image-container relative z-0">
+                    <img 
+                        src="/KnowledgeCards.png" 
+                        alt="Knowledge Cards Interface" 
+                        className="rounded-lg shadow-xl block"
+                    />
+                </div>
             ) : (
                 <div className="image-container relative z-0 flex items-center justify-center bg-gray-900/50 rounded-lg border border-white/10 backdrop-blur-sm" style={{width: '800px', height: '500px', maxWidth: '100%'}}>
                     <div className="text-center">
