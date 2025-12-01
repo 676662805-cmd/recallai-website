@@ -390,12 +390,22 @@ function InteractiveDemo() {
 function App() {
   const [showWaitlist, setShowWaitlist] = useState(false);
   const [showAdmin, setShowAdmin] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
 
   useEffect(() => {
     // Check URL for admin flag
     const params = new URLSearchParams(window.location.search);
     if (params.get('admin') === 'true') {
       setShowAdmin(true);
+    }
+
+    // 🔍 侦测逻辑：
+    // 当用户点邮件跳转过来时，URL 会包含 #access_token=...&type=signup
+    // 或者是 #error=... (如果失败)
+    // 我们只要检测到 access_token，就说明验证成功了
+    const hash = window.location.hash;
+    if (hash && hash.includes('access_token') && hash.includes('type=signup')) {
+      setIsVerified(true);
     }
 
     // Dynamic Favicon Generation
@@ -425,6 +435,60 @@ function App() {
 
   if (showAdmin) {
     return <AdminPanel />;
+  }
+
+  // -----------------------------------------------------------
+  // 🎨 场景 A：这是验证成功的提示页 (用户点邮件后看到的)
+  // -----------------------------------------------------------
+  if (isVerified) {
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        backgroundColor: '#000', // 纯黑背景
+        color: 'white',
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+      }}>
+        <div style={{
+          background: 'rgba(255,255,255,0.1)',
+          padding: '40px',
+          borderRadius: '20px',
+          border: '1px solid #333',
+          textAlign: 'center',
+          maxWidth: '400px',
+          boxShadow: '0 10px 40px rgba(0,0,0,0.5)'
+        }}>
+          <div style={{ fontSize: '60px', marginBottom: '20px' }}>🎉</div>
+          
+          <h2 style={{ fontSize: '24px', marginBottom: '15px', fontWeight: '600' }}>
+            注册成功！
+          </h2>
+          
+          <p style={{ color: '#a1a1a6', lineHeight: '1.6', marginBottom: '30px' }}>
+            您的邮箱已完成验证。<br/>
+            现在您可以<strong>关闭此浏览器窗口</strong>，<br/>
+            返回 <strong>RecallAI 桌面软件</strong> 直接登录即可。
+          </p >
+
+          <button 
+            onClick={() => window.close()} 
+            style={{
+              background: '#fff',
+              color: '#000',
+              border: 'none',
+              padding: '10px 20px',
+              borderRadius: '5px',
+              fontWeight: 'bold',
+              cursor: 'pointer'
+            }}
+          >
+            关闭窗口
+          </button>
+        </div>
+      </div>
+    );
   }
 
   return (
