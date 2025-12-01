@@ -447,26 +447,20 @@ function App() {
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
-        backgroundColor: '#000', // 纯黑背景
-        color: 'white',
+        color: 'var(--text-color)',
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
       }}>
-        <div style={{
-          background: 'rgba(255,255,255,0.1)',
-          padding: '40px',
-          borderRadius: '20px',
-          border: '1px solid #333',
+        <div className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-lg shadow-2xl shadow-purple-500/20" style={{
           textAlign: 'center',
           maxWidth: '400px',
-          boxShadow: '0 10px 40px rgba(0,0,0,0.5)'
         }}>
           <div style={{ fontSize: '60px', marginBottom: '20px' }}>🎉</div>
           
-          <h2 style={{ fontSize: '24px', marginBottom: '15px', fontWeight: '600' }}>
+          <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             Registration Successful!
           </h2>
           
-          <p style={{ color: '#a1a1a6', lineHeight: '1.6', marginBottom: '30px' }}>
+          <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '30px' }}>
             Your email has been verified.<br/>
             You can now <strong>close this window</strong>,<br/>
             and return to the <strong>RecallAI desktop app</strong> to log in.
@@ -475,14 +469,18 @@ function App() {
           <button 
             onClick={() => window.close()} 
             style={{
-              background: '#fff',
+              background: 'var(--link-color)',
               color: '#000',
               border: 'none',
               padding: '10px 20px',
-              borderRadius: '5px',
+              borderRadius: '30px',
               fontWeight: 'bold',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              boxShadow: '0 4px 15px var(--shadow-color)',
+              transition: 'transform 0.2s'
             }}
+            onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+            onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
           >
             Close Window
           </button>
@@ -604,8 +602,30 @@ function App() {
         </div>
       </section>
 
+      {/* Trusted By Section */}
+      <section className="py-10 border-t border-white/10 bg-black/20 backdrop-blur-sm">
+        <p className="text-center text-sm font-semibold text-gray-500 tracking-widest mb-8 uppercase">
+          Trusted by 500,000+ professionals and lifelong learners at
+        </p>
+        
+        <div className="marquee-wrapper">
+          <div className="marquee-content">
+            {[
+              "AE.png", "BYU.png", "GoldmanSachs.png", "MorganStanley.png", "Stanford.png", "iqvia.png", "microsoft.png",
+              "AE.png", "BYU.png", "GoldmanSachs.png", "MorganStanley.png", "Stanford.png", "iqvia.png", "microsoft.png",
+              "AE.png", "BYU.png", "GoldmanSachs.png", "MorganStanley.png", "Stanford.png", "iqvia.png", "microsoft.png",
+              "AE.png", "BYU.png", "GoldmanSachs.png", "MorganStanley.png", "Stanford.png", "iqvia.png", "microsoft.png"
+            ].map((logo, index) => (
+              <div key={index} className="marquee-item">
+                <img src={`/${logo}`} alt="Trusted Company Logo" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer style={{ textAlign: 'center', padding: '40px', borderTop: '1px solid var(--border-color)', marginTop: '40px' }}>
+      <footer style={{ textAlign: 'center', padding: '40px', borderTop: '1px solid var(--border-color)', marginTop: '0' }}>
         <p>&copy; 2024 RecallAI. All rights reserved.</p>
         <p style={{ fontSize: '12px', color: 'var(--text-quaternary)' }}>For educational purposes only. Please comply with local laws and regulations.</p>
       </footer>
