@@ -229,9 +229,9 @@ function InteractiveDemo() {
       title: "Smart Knowledge Management",
       description: "Create and customize your own knowledge cards freely. These cards will automatically surface at the perfect moment to instantly fill any gaps in your memory."
     },
-    'Interview Records': {
-      title: "Real-time Interview History",
-      description: "Automatically save and organize every interview record."
+    'Voice Transcription': {
+      title: "Real-time Voice Transcription",
+      description: "Automatically transcribes every word with lightning speed, ensuring no detail is missed."
     }
   };
 
