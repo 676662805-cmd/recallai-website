@@ -218,7 +218,7 @@ function InteractiveDemo() {
   const containerRef = React.useRef(null);
   const dragOffset = React.useRef({ x: 0, y: 0 });
   const [activeTab, setActiveTab] = useState('Interview');
-  const tabs = ['Interview', 'Knowledge Cards', 'Interview Records'];
+  const tabs = ['Interview', 'Knowledge Cards', 'Voice Transcription'];
 
   const tabContent = {
     'Interview': {
