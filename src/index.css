@@ -104,7 +104,7 @@ body {
   margin: 0 auto;    /* Center the container */
   overflow: hidden;
   padding: 40px 0;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 20%, rgba(255, 255, 255, 0.15) 80%, transparent 100%);
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 50%, transparent 80%);
   position: relative;
   box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
 }
