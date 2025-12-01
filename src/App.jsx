@@ -605,7 +605,7 @@ function App() {
       {/* Trusted By Section */}
       <section className="py-10 bg-black/20 backdrop-blur-sm">
         <p className="text-center text-sm font-semibold text-gray-500 tracking-widest mb-8 uppercase">
-          Trusted by 500,000+ professionals and lifelong learners at
+          USED BY INDIVIDUALS FROM THE TEAMS AT
         </p>
         
         <div className="marquee-wrapper">
