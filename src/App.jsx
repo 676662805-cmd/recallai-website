@@ -463,13 +463,13 @@ function App() {
           <div style={{ fontSize: '60px', marginBottom: '20px' }}>🎉</div>
           
           <h2 style={{ fontSize: '24px', marginBottom: '15px', fontWeight: '600' }}>
-            注册成功！
+            Registration Successful!
           </h2>
           
           <p style={{ color: '#a1a1a6', lineHeight: '1.6', marginBottom: '30px' }}>
-            您的邮箱已完成验证。<br/>
-            现在您可以<strong>关闭此浏览器窗口</strong>，<br/>
-            返回 <strong>RecallAI 桌面软件</strong> 直接登录即可。
+            Your email has been verified.<br/>
+            You can now <strong>close this window</strong>,<br/>
+            and return to the <strong>RecallAI desktop app</strong> to log in.
           </p >
 
           <button 
@@ -484,7 +484,7 @@ function App() {
               cursor: 'pointer'
             }}
           >
-            关闭窗口
+            Close Window
           </button>
         </div>
       </div>
