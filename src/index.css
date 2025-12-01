@@ -104,7 +104,7 @@ body {
   margin: 0 auto;    /* Center the container */
   overflow: hidden;
   padding: 40px 0;
-  background: transparent;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 20%, rgba(255, 255, 255, 0.05) 80%, transparent 100%);
   position: relative;
 }
 
@@ -137,7 +137,7 @@ body {
 
 .marquee-item {
   flex-shrink: 0;
-  padding: 0 50px; /* Increased padding for spacing */
+  padding: 0 20px; /* Reduced padding for closer spacing */
   display: flex;
   align-items: center;
   justify-content: center;
