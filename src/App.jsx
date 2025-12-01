@@ -231,7 +231,7 @@ function InteractiveDemo() {
     },
     'Interview Records': {
       title: "Comprehensive Interview History",
-      description: "Automatically save and organize every interview record. Review transcripts and AI analysis to continuously improve your interview skills."
+      description: "Automatically save and organize every interview record."
     }
   };
 
