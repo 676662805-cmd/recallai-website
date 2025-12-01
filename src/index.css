@@ -135,10 +135,6 @@ body {
   animation: scroll-right 40s linear infinite; /* Using scroll-right based on user request */
 }
 
-.marquee-content:hover {
-  animation-play-state: paused;
-}
-
 .marquee-item {
   flex-shrink: 0;
   padding: 0 50px; /* Increased padding for spacing */

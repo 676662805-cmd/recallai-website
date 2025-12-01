@@ -603,7 +603,7 @@ function App() {
       </section>
 
       {/* Trusted By Section */}
-      <section className="py-10 border-t border-white/10 bg-black/20 backdrop-blur-sm">
+      <section className="py-10 bg-black/20 backdrop-blur-sm">
         <p className="text-center text-sm font-semibold text-gray-500 tracking-widest mb-8 uppercase">
           Trusted by 500,000+ professionals and lifelong learners at
         </p>
