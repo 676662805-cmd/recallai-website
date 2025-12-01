@@ -230,7 +230,7 @@ function InteractiveDemo() {
       description: "Create and customize your own knowledge cards freely. These cards will automatically surface at the perfect moment to instantly fill any gaps in your memory."
     },
     'Interview Records': {
-      title: "Comprehensive Interview History",
+      title: "Real-time Interview History",
       description: "Automatically save and organize every interview record."
     }
   };
@@ -355,11 +355,12 @@ function InteractiveDemo() {
                     />
                 </div>
             ) : (
-                <div className="image-container relative z-0 flex items-center justify-center bg-gray-900/50 rounded-lg border border-white/10 backdrop-blur-sm" style={{width: '800px', height: '500px', maxWidth: '100%'}}>
-                    <div className="text-center">
-                        <h3 className="text-2xl font-bold text-white mb-2">{activeTab} Mode</h3>
-                        <p className="text-gray-400">Coming Soon</p>
-                    </div>
+                <div className="image-container relative z-0">
+                    <img 
+                        src="/Transcription.png" 
+                        alt="Interview Records Interface" 
+                        className="rounded-lg shadow-xl block"
+                    />
                 </div>
             )}
         </div>
