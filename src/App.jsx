@@ -391,6 +391,11 @@ function App() {
   const [showWaitlist, setShowWaitlist] = useState(false);
   const [showAdmin, setShowAdmin] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
+  const [downloadLinks, setDownloadLinks] = useState({
+    intel: 'https://github.com/676662805-cmd/RecallAI/releases',
+    arm64: 'https://github.com/676662805-cmd/RecallAI/releases',
+    windows: 'https://github.com/676662805-cmd/RecallAI/releases'
+  });
 
   useEffect(() => {
     // Check URL for admin flag
@@ -407,6 +412,39 @@ function App() {
     if (hash && hash.includes('access_token') && hash.includes('type=signup')) {
       setIsVerified(true);
     }
+
+    // Fetch latest release from GitHub API
+    const fetchLatestRelease = async () => {
+      try {
+        const response = await fetch('https://api.github.com/repos/676662805-cmd/RecallAI/releases/latest');
+        const data = await response.json();
+        
+        if (data.assets) {
+          const links = {
+            intel: 'https://github.com/676662805-cmd/RecallAI/releases',
+            arm64: 'https://github.com/676662805-cmd/RecallAI/releases',
+            windows: 'https://github.com/676662805-cmd/RecallAI/releases'
+          };
+
+          data.assets.forEach(asset => {
+            const name = asset.name.toLowerCase();
+            if (name.includes('arm64') || name.includes('m1') || name.includes('m-series')) {
+              links.arm64 = asset.browser_download_url;
+            } else if (name.endsWith('.dmg')) {
+              links.intel = asset.browser_download_url;
+            } else if (name.endsWith('.exe')) {
+              links.windows = asset.browser_download_url;
+            }
+          });
+
+          setDownloadLinks(links);
+        }
+      } catch (error) {
+        console.error('Failed to fetch latest release:', error);
+      }
+    };
+
+    fetchLatestRelease();
 
     // Dynamic Favicon Generation
     const setCircularFavicon = () => {
@@ -538,21 +576,21 @@ function App() {
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', maxWidth: '900px', margin: '0 auto' }}>
           <a 
-            href="https://github.com/676662805-cmd/RecallAI/releases/download/v1.0.1/RecallAI-1.0.1.dmg"
+            href={downloadLinks.intel}
             download
             className="download-btn"
           >
             Download for Mac (Intel)
           </a>
           <a 
-            href="https://github.com/676662805-cmd/RecallAI/releases/download/v1.0.1/RecallAI-1.0.1-arm64.dmg"
+            href={downloadLinks.arm64}
             download
             className="download-btn"
           >
             Download for Mac (M-Series)
           </a>
           <a 
-            href="https://github.com/676662805-cmd/RecallAI/releases/download/v1.0.1/RecallAI-Setup-1.0.1.exe"
+            href={downloadLinks.windows}
             download
             className="download-btn"
           >
