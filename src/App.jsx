@@ -597,7 +597,6 @@ function App() {
             Download for Windows
           </a>
         </div>
-        <p style={{ marginTop: '15px', fontSize: '14px', color: 'var(--text-tertiary)' }}>v0.9 Beta • Groq Key Required</p>
       </header>
 
       {/* Interactive Demo Section */}
