@@ -538,22 +538,22 @@ function App() {
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', maxWidth: '900px', margin: '0 auto' }}>
           <a 
-            href="https://github.com/676662805-cmd/RecallAI/releases"
-            target="_blank"
+            href="https://github.com/676662805-cmd/RecallAI/releases/download/v1.0.1/RecallAI-1.0.1.dmg"
+            download
             className="download-btn"
           >
             Download for Mac (Intel)
           </a>
           <a 
-            href="https://github.com/676662805-cmd/RecallAI/releases"
-            target="_blank"
+            href="https://github.com/676662805-cmd/RecallAI/releases/download/v1.0.1/RecallAI-1.0.1-arm64.dmg"
+            download
             className="download-btn"
           >
             Download for Mac (M-Series)
           </a>
           <a 
-            href="https://github.com/676662805-cmd/RecallAI/releases"
-            target="_blank"
+            href="https://github.com/676662805-cmd/RecallAI/releases/download/v1.0.1/RecallAI-Setup-1.0.1.exe"
+            download
             className="download-btn"
           >
             Download for Windows
