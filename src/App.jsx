@@ -537,7 +537,6 @@ function App() {
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', maxWidth: '900px', margin: '0 auto' }}>
-          {/* 
           <a 
             href="https://github.com/676662805-cmd/RecallAI/releases"
             target="_blank"
@@ -559,7 +558,6 @@ function App() {
           >
             Download for Windows
           </a>
-          */}
         </div>
         <p style={{ marginTop: '15px', fontSize: '14px', color: 'var(--text-tertiary)' }}>v0.9 Beta • Groq Key Required</p>
       </header>
