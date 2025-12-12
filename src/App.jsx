@@ -428,9 +428,9 @@ function App() {
 
           data.assets.forEach(asset => {
             const name = asset.name.toLowerCase();
-            if ((name.includes('arm64') || name.includes('m1') || name.includes('m-series')) && name.endsWith('.dmg')) {
+            if (name.includes('arm64') && name.endsWith('.dmg')) {
               links.arm64 = asset.browser_download_url;
-            } else if (name.endsWith('.dmg') && !name.includes('blockmap')) {
+            } else if (!name.includes('arm64') && name.endsWith('.dmg')) {
               links.intel = asset.browser_download_url;
             } else if (name.endsWith('.exe')) {
               links.windows = asset.browser_download_url;
