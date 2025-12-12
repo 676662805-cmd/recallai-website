@@ -552,31 +552,6 @@ function App() {
         <p style={{ fontSize: '20px', color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 40px' }}>
           Knowledge Cards + Real-time voice transcription + AI smart prompts + Invisible overlay window<br/>Eliminate the fear of forgetting; ensure every answer is precise and complete
         </p>
-        
-        <div style={{ marginBottom: '40px' }}>
-          <button 
-            onClick={() => setShowWaitlist(true)}
-            style={{ 
-              padding: '15px 40px', 
-              background: 'var(--link-color)', 
-              color: 'black', 
-              border: 'none', 
-              borderRadius: '30px', 
-              fontSize: '18px', 
-              fontWeight: 'bold',
-              cursor: 'pointer',
-              boxShadow: '0 4px 15px var(--shadow-color)',
-              transition: 'transform 0.2s'
-            }}
-            onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-            onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-          >
-            Reserve Now
-          </button>
-          <p style={{ marginTop: '10px', fontSize: '14px', color: 'var(--text-tertiary)' }}>
-            Free During Our Beta Period!
-          </p>
-        </div>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', maxWidth: '900px', margin: '0 auto' }}>
           <a 
