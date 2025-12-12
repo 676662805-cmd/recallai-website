@@ -549,10 +549,10 @@ function App() {
         <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent inline-block pb-2">
           Instant Recall Confident Interviewing
         </h1>
-        <p style={{ fontSize: '20px', color: 'var(--text-secondary)', maxWidth: '800px', margin: '0 auto 20px' }}>
+        <p style={{ fontSize: '20px', color: 'var(--text-secondary)', margin: '0 auto 20px', whiteSpace: 'nowrap' }}>
           Knowledge Cards + Real-time voice transcription + AI smart prompts + Invisible overlay window
         </p>
-        <p style={{ fontSize: '20px', color: 'white', maxWidth: '800px', margin: '0 auto 40px', fontWeight: 'bold', textShadow: '0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3)' }}>
+        <p style={{ fontSize: '20px', color: 'white', margin: '0 auto 40px', fontWeight: 'bold', textShadow: '0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3)', whiteSpace: 'nowrap' }}>
           "Help you recall your own knowledge framework, rather than acting as an AI's messenger"
         </p>
 
