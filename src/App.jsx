@@ -550,7 +550,8 @@ function App() {
           Instant Recall Confident Interviewing
         </h1>
         <p style={{ fontSize: '20px', color: 'var(--text-secondary)', maxWidth: '800px', margin: '0 auto 40px' }}>
-          Knowledge Cards + Real-time voice transcription + AI smart prompts + Invisible overlay window Help you recall your own knowledge framework, rather than acting as an AI's messenger
+          Knowledge Cards + Real-time voice transcription + AI smart prompts + Invisible overlay window 
+          Help you recall your own knowledge framework, rather than acting as an AI's messenger
         </p>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', maxWidth: '900px', margin: '0 auto 30px' }}>
