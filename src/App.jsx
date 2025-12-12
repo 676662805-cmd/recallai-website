@@ -428,6 +428,10 @@ function App() {
 
           data.assets.forEach(asset => {
             const name = asset.name.toLowerCase();
+            
+            // Double check to exclude blockmap files
+            if (name.includes('blockmap')) return;
+
             if (name.includes('arm64') && name.endsWith('.dmg')) {
               links.arm64 = asset.browser_download_url;
             } else if (!name.includes('arm64') && name.endsWith('.dmg')) {
