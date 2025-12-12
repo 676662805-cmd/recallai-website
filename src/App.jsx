@@ -549,20 +549,11 @@ function App() {
         <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent inline-block pb-2">
           Instant Recall Confident Interviewing
         </h1>
-        <p style={{ fontSize: '20px', color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 40px' }}>
-          Knowledge Cards + Real-time voice transcription + AI smart prompts + Invisible overlay window<br/>Help you recall your own knowledge framework, rather than acting as an AI's messenger
+        <p style={{ fontSize: '20px', color: 'var(--text-secondary)', maxWidth: '800px', margin: '0 auto 40px' }}>
+          Knowledge Cards + Real-time voice transcription + AI smart prompts + Invisible overlay window Help you recall your own knowledge framework, rather than acting as an AI's messenger
         </p>
 
-        <div style={{ maxWidth: '900px', margin: '0 auto 30px', textAlign: 'center' }}>
-          <p style={{ fontSize: '14px', color: 'var(--text-tertiary)', marginBottom: '8px', lineHeight: '1.5' }}>
-            ✓ Certified by Apple Developer. Mac users can install with confidence. Windows users: Windows 10+ recommended. If prompted as untrusted, select "Install Anyway".
-          </p>
-          <p style={{ fontSize: '14px', color: 'var(--text-tertiary)', lineHeight: '1.5' }}>
-            ✓ All interview cards and voice transcription records are saved locally on your device. Nothing is uploaded to the network. Your privacy is protected.
-          </p>
-        </div>
-
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', maxWidth: '900px', margin: '0 auto' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', maxWidth: '900px', margin: '0 auto 30px' }}>
           <a 
             href={downloadLinks.intel}
             download
@@ -584,6 +575,15 @@ function App() {
           >
             Download for Windows
           </a>
+        </div>
+
+        <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
+          <p style={{ fontSize: '14px', color: 'var(--text-tertiary)', marginBottom: '8px', lineHeight: '1.5' }}>
+            ✓ Certified by Apple Developer. Mac users can install with confidence.<br/>Windows users: Windows 10+ recommended. If prompted as untrusted, select "Install Anyway".
+          </p>
+          <p style={{ fontSize: '14px', color: 'var(--text-tertiary)', lineHeight: '1.5' }}>
+            ✓ All interview cards and voice transcription records are saved locally on your device. Nothing is uploaded to the network. Your privacy is protected.
+          </p>
         </div>
       </header>
 
