@@ -580,7 +580,7 @@ function App() {
           </a>
         </div>
 
-        <p style={{ fontSize: '32px', fontWeight: '900', color: 'var(--text-color)', margin: '0 auto 24px', textShadow: '0 0 14px var(--shadow-color)', letterSpacing: '0.3px' }}>
+        <p style={{ fontSize: '20px', color: 'white', margin: '0 auto 24px', fontWeight: 'bold', textShadow: '0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3)', whiteSpace: 'nowrap' }}>
           Beta Testing Now: All Features Are Completely Free.
         </p>
 
