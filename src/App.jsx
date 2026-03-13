@@ -580,6 +580,10 @@ function App() {
           </a>
         </div>
 
+        <p style={{ fontSize: '32px', fontWeight: '900', color: 'var(--text-color)', margin: '0 auto 24px', textShadow: '0 0 14px var(--shadow-color)', letterSpacing: '0.3px' }}>
+          Beta Testing Now: All Features Are Completely Free.
+        </p>
+
         <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
           <p style={{ fontSize: '14px', color: 'var(--text-tertiary)', marginBottom: '8px', lineHeight: '1.5' }}>
             ✓ Certified by Apple Developer. Mac users can install with confidence.<br/>Windows users: Windows 10+ recommended. If prompted as untrusted, select "Install Anyway".
