@@ -581,7 +581,7 @@ function App() {
         </div>
 
         <p style={{ fontSize: '20px', color: 'white', margin: '0 auto 24px', fontWeight: 'bold', textShadow: '0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3)', whiteSpace: 'nowrap' }}>
-          Beta Testing Now: All Features Are Completely Free.
+          Beta Testing Now: All Features Are Completely <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent inline-block">Free</span>.
         </p>
 
         <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
